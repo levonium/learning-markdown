@@ -33,7 +33,7 @@
       </p>
 
       <p>
-        Here's the source files: <a href="https://github.com/levonium/learning-markdown">Markdown</a>
+        The source files: <a href="https://github.com/levonium/learning-markdown" target="_blank">Markdown</a>
       </p>
 
       <div class="spacer"></div>
