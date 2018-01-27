@@ -10,10 +10,14 @@
 
         <div class="nav-menu">
           <div class="nav-item">
-            <router-link class="" to="/list" exact> Learn </router-link>
+            <router-link class="" to="/list" exact>
+              <span>Learn</span>
+            </router-link>
           </div>
           <div class="nav-item">
-            <router-link class="" to="/practice" exact> ️Practice </router-link>
+            <router-link class="" to="/practice" exact> ️
+              <span>Practice</span>
+            </router-link>
           </div>
         </div>
 
