@@ -5,16 +5,15 @@
       <div class="container">
 
         <div class="nav-brand">
-          <a class="nav-item" href="/" v-html="title">
-          </a>
+          <router-link class="nav-item" to="/" v-html="title" exact></router-link>
         </div>
 
         <div class="nav-menu">
           <div class="nav-item">
-            <router-link class="" to="/list" exact>Learn</router-link>
+            <router-link class="" to="/list" exact> Learn </router-link>
           </div>
           <div class="nav-item">
-            <router-link class="" to="/practice" exact>️Practice</router-link>
+            <router-link class="" to="/practice" exact> ️Practice </router-link>
           </div>
         </div>
 

@@ -44,6 +44,7 @@ import List from '../../list'
 export default {
   data () {
     return {
+      docTitle: 'Learn Markdown : ',
       list: List,
       slug: this.$route.params.slug,
       loading: false,
@@ -71,6 +72,7 @@ export default {
           this.isError = true
           this.loading = false
         })
+      document.title = this.docTitle + this.title
     }
   }
 }

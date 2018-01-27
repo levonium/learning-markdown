@@ -20,13 +20,17 @@ import marked from 'marked'
 export default {
   data () {
     return {
-      content: '# Markdown 🔥\n\n_Practice **Markdown** here_\n\n* list item\n* another list item'
+      content: '# Markdown 🔥\n\n_Practice **Markdown** here_\n\n* list item\n* another list item',
+      docTitle: 'Practice Markdown'
     }
   },
   computed: {
     converted: function () {
       return marked(this.content)
     }
+  },
+  created () {
+    document.title = this.docTitle
   }
 }
 </script>

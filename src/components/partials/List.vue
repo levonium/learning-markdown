@@ -23,7 +23,13 @@ export default {
   name: 'List',
   data () {
     return {
-      list: List
+      list: List,
+      docTitle: 'Learn Markdown'
+    }
+  },
+  created () {
+    if (this.$route.name === 'List') {
+      document.title = this.docTitle
     }
   }
 }

@@ -52,6 +52,14 @@ export default {
   components: {
     'md-list': ListTemplate
   },
-  name: 'Home'
+  name: 'Home',
+  data () {
+    return {
+      docTitleH: 'Markdown ✔️ Learn and Practice'
+    }
+  },
+  created () {
+    document.title = this.docTitleH
+  }
 }
 </script>

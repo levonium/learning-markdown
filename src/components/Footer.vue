@@ -39,6 +39,11 @@ export default {
   display: flex;
   align-items: center;
 }
+@media screen and (max-width: 599px) {
+  .footer .container {
+    flex-direction: column;
+  }
+}
 .footer .container p {
   flex: 1;
   margin: 0.5em 0;
