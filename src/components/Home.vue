@@ -4,7 +4,6 @@
     <md-list></md-list>
 
     <hr>
-
     <div class="spacer"></div>
 
     <div class="desc">
@@ -55,11 +54,11 @@ export default {
   name: 'Home',
   data () {
     return {
-      docTitleH: 'Markdown ✔️ Learn and Practice'
+      docTitle: 'Markdown ✔️ Learn and Practice'
     }
   },
   created () {
-    document.title = this.docTitleH
+    document.title = this.docTitle
   }
 }
 </script>

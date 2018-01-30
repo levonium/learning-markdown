@@ -28,19 +28,12 @@
 </template>
 
 <script>
-import List from '../list'
-
 export default {
   name: 'Header',
   props: {
     title: {
       type: String,
       required: true
-    }
-  },
-  data () {
-    return {
-      list: List
     }
   }
 }

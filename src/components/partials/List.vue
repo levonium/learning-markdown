@@ -6,7 +6,8 @@
     <div class="list-grid">
       <div class="list-item" v-for="(item, index) in list" :key="index">
         <router-link :to="'/list/' + index" class="">
-          {{ item }}
+          <app-icon :iconName="index"></app-icon>
+          <span class="item-name">{{ item }}</span>
         </router-link>
       </div>
     </div>
@@ -17,9 +18,13 @@
 </template>
 
 <script>
+import Icon from './Icon.vue'
 import List from '../../list'
 
 export default {
+  components: {
+    'app-icon': Icon
+  },
   name: 'List',
   data () {
     return {
@@ -59,9 +64,25 @@ export default {
   }
 }
 .list-item {
-  padding: 1em;
-  border: 1px dotted;
-  border-radius: 6px;
+  padding: 2em 0;
+  border-radius: 0;
   text-align: center;
+  border: 1px solid #c2d8f5;
+}
+span.item-icon {
+  width: 3em;
+  height: 4em;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+span.item-icon svg {
+  fill: #79a3da;
+  flex-grow: 1;
+}
+span.item-name {
+  display: block;
+  margin-top: 1em;
+  color: #000;
 }
 </style>

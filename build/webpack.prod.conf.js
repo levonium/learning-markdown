@@ -121,7 +121,21 @@ const webpackConfig = merge(baseWebpackConfig, {
     // prerendering
     new PrerenderSpaPlugin(
       path.join(__dirname, '../dist'),
-      ['/', '/list', '/practice']
+      [
+        '/',
+        '/practice',
+        '/list',
+        '/list/formatting',
+        '/list/headings',
+        '/list/hr',
+        '/list/br',
+        '/list/lists',
+        '/list/links',
+        '/list/images',
+        '/list/code',
+        '/list/tables',
+        '/list/quotes'
+      ]
     )
   ]
 })
