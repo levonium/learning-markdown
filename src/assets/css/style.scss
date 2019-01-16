@@ -1,0 +1,14 @@
+@tailwind preflight;
+@tailwind components;
+
+a {
+  @apply text-blue no-underline;
+}
+
+.transition {
+  transition: all 0.5s;
+}
+
+@import './markdown';
+
+@tailwind utilities;
