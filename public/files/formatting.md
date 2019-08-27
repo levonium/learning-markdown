@@ -8,7 +8,7 @@ strong: double asterisks or double underscores
 
 Only one **word** is strong.
 
-Parts of a word only:  
+Parts of a word only:
 some**times**, **some**times, so**meti**mes.
 
 ---
@@ -19,9 +19,9 @@ emphasize: single asterisk or single underscore
 
 ---
 
-strike trhough: double tildes
+strike through: double tildes
 
-~~Strike Trhough~~
+~~Strike Through~~
 
 ---
 

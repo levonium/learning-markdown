@@ -6,7 +6,7 @@
         <p class="mb-2">
           <span># {{ new Date().getFullYear() }} </span> #
           <span>Learning Markdown</span> #
-          <span>Made by <a href="https://drim.io" target="_blank">Levon Avetyan</a> ✌ </span>
+          <span>Made by <a href="https://drim.io" target="_blank" rel="noopenner">Levon Avetyan</a> ✌</span>
         </p>
 
         <p>

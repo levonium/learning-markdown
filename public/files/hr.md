@@ -4,7 +4,7 @@
 
 1. hyphens `---`
 1. asterisks `***`
-1. uderscores `___`
+1. underscores `___`
 
 using hyphens
 
@@ -19,5 +19,5 @@ using underscores
 ___
 
 
-Make sure to add an extra line before,  
+Make sure to add an extra line before,
 otherwise it may become a heading.

@@ -10,8 +10,8 @@ Here's the syntax for including images in markdown.
 
 ___
 
-You can also use referrances, like so: `![Meow][cat]`  
-The alt text and referrence to the image source.
+You can also use references, like so: `![Meow][cat]`
+The alt text and reference to the image source.
 Later (maybe at the end) you add the image URL.
 
 `[cat]: https://i.imgur.com/6NthqvQ.jpg`

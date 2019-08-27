@@ -13,19 +13,19 @@ Link without title: [Twitter](https://twitter.co)
 
 ### Links without anchor texts
 
-using single brackets (works everywhere):  
+using single brackets (works everywhere):
 <https://github.com>
 
-just typeing the URL or even the domain name  
-may become a link in some editors  
+just typing the URL or even the domain name
+may become a link in some editors
 https://github.com or github.com
 
 
-### Links using referrences
+### Links using references
 
 Use this - `[Link Anchor][LinkRef]` - in the content.
 
-At the end (or somewhere else) add the referrence:
+At the end (or somewhere else) add the reference:
 
 `[LinkRef]: LinkURL 'Link Title Optional'`
 

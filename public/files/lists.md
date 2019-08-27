@@ -2,7 +2,7 @@
 
 ### Unordered Lists
 
-* Lists start with an aserisk `*`
+* Lists start with an asterisk `*`
 * or with a plus sign `+`
 * or with a hyphen `-`
 * choose the one you like
@@ -42,5 +42,5 @@ Any number and any order will do 🆒
 * add another item
 	1. then start an ordered list
 	2. another one item
-		+ then anordered again
+		+ then unordered again
 		+ and so on
