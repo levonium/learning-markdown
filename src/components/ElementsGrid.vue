@@ -7,10 +7,8 @@
         <div class="mx-4 p-4 text-center bg-primary hover:bg-primary-hover shadow rounded-lg transition">
 
           <router-link :to="index" class="block w-full h-full text-dark">
-
             <md-icon :iconName="index"></md-icon>
             <span class="block mt-2 text-lg font-bold">{{ item }}</span>
-
           </router-link>
         </div>
 
@@ -18,7 +16,7 @@
 
     </div>
 
-    <p class="text-right font-bold pr-2">Markdown 🔥🔥🔥🔥🔥</p>
+    <p class="text-right font-bold pr-2">Markdown is cool! 😎</p>
 
   </div>
 </template>

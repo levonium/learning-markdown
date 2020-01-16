@@ -22,10 +22,10 @@
     </div>
 
     <div class="text-red pl-4" v-if="isError">
-      <span>Oops, something went wrong. 🙃 </span>
+      <span>Oops, something went wrong. 🙃</span>
     </div>
 
-    <h3 class="mt-8 pr-4 text-right">Practice Markdown <router-link to="/practice" exact> 👉 </router-link> </h3>
+    <h3 class="mt-8 pr-4 text-right"><router-link to="/practice" exact>Practice Markdown 👉</router-link></h3>
 
   </div>
 
