@@ -23,7 +23,7 @@
     "babel-eslint": "^10.0.3",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.2.3",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "postcss-purgecss": "^1.0.0",
     "purgecss": "^1.4.2",
     "sass-loader": "^7.3.1",
