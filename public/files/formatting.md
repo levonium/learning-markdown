@@ -25,4 +25,4 @@ strike through: double tildes
 
 ---
 
-**Strong, _emphasize and ~~strike through~~_ combined **
+**Strong, _emphasize and ~~strike through~~_ combined**
