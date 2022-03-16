@@ -1,29 +1,30 @@
+<script setup>
+import { RouterView } from "vue-router";
+import AppHeader from "@/components/AppHeader.vue";
+import AppFooter from "@/components/AppFooter.vue";
+</script>
+
 <template>
-  <div id="app" class="min-h-screen flex flex-col justify-between font-sans bg-dark text-white antialiased">
-
-    <app-header />
-
-    <div class="container mx-auto my-16">
-      <router-view />
-    </div>
-
-    <app-footer />
-
+  <div class="site container">
+    <AppHeader />
+    <RouterView />
+    <AppFooter />
   </div>
 </template>
 
-<script>
-import AppHeader from './components/Header.vue'
-import AppFooter from './components/Footer.vue'
+<style>
+@import "@/assets/base.css";
 
-export default {
-  components: {
-    AppHeader,
-    AppFooter
+.site {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+}
+@media (min-width: 768px) {
+  .site {
+    padding: 0;
   }
 }
-</script>
-
-<style lang="scss">
-@import './assets/css/style';
 </style>
