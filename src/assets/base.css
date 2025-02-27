@@ -1,10 +1,15 @@
 :root {
-  --color-main: #fcc853;
-  --color-main-hover: #cca041;
-  --color-dark: #000f1d;
+  --color-step-1: #0f0c29;
+  --color-step-2: #302b63;
+  --color-step-3: #24243e;
 
-  --color-link: #2b7eda;
-  --color-link-hover: #4c94e6;
+  --color-main: oklch(0.785 0.115 274.713);
+  --color-dark: var(--color-step-2);
+  --color-neutral: oklch(0.704 0.04 256.788);
+
+
+  --color-link: #fff;
+  --color-link-hover: var(--color-neutral);
 
   --color-board: #0c1824;
   --color-red: #ff4500;
@@ -26,15 +31,27 @@
 body {
   min-height: 100vh;
   color: var(--color-text);
-  background: var(--color-bg);
+  background-image: linear-gradient(to right, var(--color-step-1), var(--color-step-2), var(--color-step-3));
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+  font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
     Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-size: 15px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.site {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+
+  @media (min-width: 768px) {
+    padding: 0;
+  }
 }
 
 .container {
@@ -44,7 +61,7 @@ body {
 }
 
 .shadow {
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10);
 }
 
 .title {
@@ -52,16 +69,46 @@ body {
   padding-left: 1rem;
   text-align: center;
 }
+
 @media (min-width: 768px) {
   .title {
     text-align: left;
   }
 }
 
-a, a:visited {
+a,
+a:visited {
   color: var(--color-link);
   text-decoration: none;
+  transition: color 0.3s ease;
 }
+
 a:hover {
   color: var(--color-link-hover);
+}
+
+.heading {
+  display: flex;
+  align-items: end;
+  justify-content: start;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  line-height: 1.2;
+  font-weight: 700;
+
+  & span:first-child {
+    margin-right: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--color-step-2);
+    border-radius: 6px;
+    background-color: var(--color-step-3);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+  }
 }

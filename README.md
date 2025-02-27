@@ -1,8 +1,8 @@
-# Learning Markdown
+# Learn Markdown
 
 Website I made while learning Markdown and Vue.js
 
-![Learning Markdown](https://raw.githubusercontent.com/levonium/learning-markdown/master/public/screenshot.png)
+![Learning Markdown](https://raw.githubusercontent.com/levonium/learning-markdown/master/public/screenshot.jpg)
 
 ## Project Setup
 

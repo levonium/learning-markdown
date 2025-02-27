@@ -14,17 +14,5 @@ import AppFooter from "@/components/AppFooter.vue";
 
 <style>
 @import "@/assets/base.css";
-
-.site {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1rem;
-}
-@media (min-width: 768px) {
-  .site {
-    padding: 0;
-  }
-}
+@import "@/assets/markdown.css";
 </style>

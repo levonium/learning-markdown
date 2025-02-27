@@ -2,19 +2,21 @@
   <footer>
     <div class="container wrapper">
       <p>
-        <span># {{ new Date().getFullYear() }} Learning Markdown</span>
-        <span
-          ># Made by
-          <a href="https://drim.io" target="_blank" rel="noopenner"
-            >Levon</a
-          ></span
-        >
-        <span
-          >#
+        <span>
+          # made with &nbsp;💙&nbsp; by &nbsp;
+          <a href="https://drim.io" target="_blank" rel="noopenner">levon</a>
+        </span>
+        &middot;
+        <span>
+          #
           <a href="https://github.com/levonium/learning-markdown"
-            >Source</a
-          ></span
-        >
+            >source code</a
+          >
+        </span>
+        &middot;
+        <span>
+          <a href="#top"># top</a>
+        </span>
       </p>
     </div>
   </footer>
@@ -22,16 +24,20 @@
 
 <style scoped>
 footer {
-  border-top: 1px solid var(--color-main);
+  border-top: 1px solid var(--color-step-2);
+  color: var(--color-neutral);
 }
+
 .wrapper {
   padding: 1rem;
   text-align: center;
 }
+
 p {
   margin-bottom: 0.5rem;
 }
+
 span {
-  padding-right: 0.5rem;
+  padding: 0 0.5rem;
 }
 </style>
