@@ -1,6 +1,6 @@
 # Learn Markdown
 
-Website I made while learning Markdown and Vue.js
+A small interactive Markdown tutorial with a live practice page.
 
 ![Learning Markdown](https://raw.githubusercontent.com/levonium/learning-markdown/master/public/screenshot.jpg)
 
@@ -10,20 +10,23 @@ Website I made while learning Markdown and Vue.js
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Development
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Build for Production
 
 ```sh
 npm run build
+npm run preview
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Code Quality
 
 ```sh
 npm run lint
+npm run format
+npm run test
 ```

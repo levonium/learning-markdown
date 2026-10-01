@@ -4,14 +4,20 @@
       <p>
         <span>
           # made with &nbsp;💙&nbsp; by &nbsp;
-          <a href="https://drim.io" target="_blank" rel="noopenner">levon</a>
+          <a href="https://drim.io" target="_blank" rel="noopener noreferrer"
+            >levon</a
+          >
         </span>
         &middot;
         <span>
           #
-          <a href="https://github.com/levonium/learning-markdown"
-            >source code</a
+          <a
+            href="https://github.com/levonium/learning-markdown"
+            target="_blank"
+            rel="noopener noreferrer"
           >
+            source code
+          </a>
         </span>
         &middot;
         <span>
@@ -39,5 +45,10 @@ p {
 
 span {
   padding: 0 0.5rem;
+}
+
+a:hover,
+a:focus-visible {
+  outline: none;
 }
 </style>

@@ -1,15 +1,15 @@
 <template>
   <header class="container wrapper">
     <h1>
-      <router-link class="text-white" to="/" exact>
-        <span class="neutral">#</span>
+      <router-link class="home-link" to="/">
+        <span class="neutral" aria-hidden="true">#</span>
         Learn Markdown
       </router-link>
     </h1>
 
-    <router-link to="/practice" exact class="practice-link">
-      Practice
-    </router-link>
+    <nav aria-label="Main navigation">
+      <router-link to="/practice" class="practice-link"> Practice </router-link>
+    </nav>
   </header>
 </template>
 
@@ -23,32 +23,45 @@ h1 {
   margin-bottom: 0;
   text-align: center;
   font-size: 1.375rem;
+}
 
-  & a {
-    color: var(--color-text);
-    font-weight: 700;
+.home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--color-text);
+  font-weight: 700;
+}
 
-    & span {
-      margin-right: 0.25rem;
-      font-size: 2.4rem;
-      color: oklch(0.929 0.013 255.508);
-      opacity: 0.2;
-      font-weight: 400;
-    }
-  }
+.home-link:hover,
+.home-link:focus-visible {
+  color: var(--color-link-hover);
+  outline: none;
+}
+
+.neutral {
+  font-size: 2.4rem;
+  color: oklch(0.929 0.013 255.508);
+  opacity: 0.2;
+  font-weight: 400;
 }
 
 .practice-link {
+  display: inline-block;
   background-color: var(--color-step-2);
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   color: var(--color-text);
   font-weight: 700;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-  &:hover {
-    background-color: var(--color-step-3);
-  }
+.practice-link:hover,
+.practice-link:focus-visible,
+.practice-link.router-link-active {
+  background-color: var(--color-step-3);
+  color: var(--color-link-hover);
+  outline: none;
 }
 
 @media (min-width: 768px) {
@@ -62,10 +75,10 @@ h1 {
   h1 {
     font-size: 5rem;
     line-height: 0.8;
+  }
 
-    & > a > span {
-      font-size: 6rem;
-    }
+  .neutral {
+    font-size: 6rem;
   }
 }
 </style>

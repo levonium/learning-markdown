@@ -1,114 +1,210 @@
-<script>
-import { marked } from "marked";
+<script setup>
+import { ref, computed, onMounted, onUnmounted } from "vue";
 import Files from "@/Files.js";
+import { renderMarkdown } from "@/composables/useMarkdown.js";
+import { highlightMarkdown } from "@/utils/highlight.js";
 
-export default {
-  props: {
-    slug: {
-      type: String,
-      required: true,
+const props = defineProps({
+  slug: {
+    type: String,
+    required: true,
+  },
+});
+
+const markdownModules = import.meta.glob("/src/files/*.md", {
+  query: "?raw",
+  import: "default",
+});
+
+const svgModules = import.meta.glob("/src/files/*.svg", {
+  query: "?raw",
+  import: "default",
+});
+
+const articleRef = ref(null);
+const isVisible = ref(false);
+const isError = ref(false);
+const content = ref("");
+const icon = ref("");
+
+const title = computed(() => Files[props.slug] || props.slug);
+const renderedMarkdown = computed(() => renderMarkdown(content.value));
+const highlightedSource = computed(() => highlightMarkdown(content.value));
+
+async function loadData() {
+  if (content.value) return;
+
+  try {
+    const [mdPath] = Object.keys(markdownModules).filter((path) =>
+      path.endsWith(`/${props.slug}.md`)
+    );
+    const [svgPath] = Object.keys(svgModules).filter((path) =>
+      path.endsWith(`/${props.slug}.svg`)
+    );
+
+    const [mdSource, svgSource] = await Promise.all([
+      mdPath ? markdownModules[mdPath]() : Promise.resolve(""),
+      svgPath ? svgModules[svgPath]() : Promise.resolve(""),
+    ]);
+
+    content.value = mdSource;
+    icon.value = svgSource;
+  } catch (error) {
+    isError.value = true;
+    // eslint-disable-next-line no-console
+    console.error(`Failed to load section "${props.slug}":`, error);
+  }
+}
+
+let observer = null;
+
+onMounted(() => {
+  if (!articleRef.value) return;
+
+  observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        isVisible.value = true;
+        loadData();
+        observer.disconnect();
+      }
     },
-  },
-  data() {
-    return {
-      loading: false,
-      isError: false,
-      title: "",
-      content: "",
-      marked: "",
-      icon: "",
-    };
-  },
+    {
+      rootMargin: "200px 0px",
+      threshold: 0,
+    }
+  );
 
-  created() {
-    this.title = Files[this.slug];
-    this.loading = true;
+  observer.observe(articleRef.value);
+});
 
-    const file = `/files/${this.slug}.md`;
-    this.getData(file);
-    this.getIcon(`/files/${this.slug}.svg`);
-
-    this.loading = false;
-  },
-
-  methods: {
-    getData(url) {
-      fetch(url)
-        .then((response) => response.text())
-        .then((data) => {
-          this.content = data;
-          this.marked = marked(this.content);
-        })
-        .catch((error) => {
-          this.isError = true;
-          console.log(error);
-        });
-    },
-    getIcon(url) {
-      fetch(url)
-        .then((response) => response.text())
-        .then((data) => {
-          this.icon = data;
-        })
-        .catch((error) => {
-          this.isError = true;
-          console.log(error);
-        });
-    },
-  },
-};
+onUnmounted(() => {
+  if (observer) observer.disconnect();
+});
 </script>
 
 <template>
-  <article>
+  <article :id="slug" ref="articleRef" class="section" :aria-label="title">
     <h2 class="heading">
-      <span v-html="icon"></span>
+      <span class="icon" aria-hidden="true" v-html="icon"></span>
       <span>{{ title }}</span>
     </h2>
 
-    <div v-if="loading">
-      <svg viewBox="0 0 100 100">
-        <path
-          fill="none"
-          stroke="#fcc853"
-          stroke-width="3"
-          stroke-dasharray="2.5658892822265624 2.5658892822265624"
-          d="M24.3,30C11.4,30,5,43.3,5,50s6.4,20,19.3,20c19.3,0,32.1-40,51.4-40 C88.6,30,95,43.3,95,50s-6.4,20-19.3,20C56.4,70,43.6,30,24.3,30z"
-        >
-          <animate
-            attributeName="stroke-dashoffset"
-            calcMode="linear"
-            values="0;256.58892822265625"
-            keyTimes="0;1"
-            dur="1"
-            begin="0s"
-            repeatCount="indefinite"
-          ></animate>
-        </path>
-      </svg>
+    <div v-if="!isVisible" class="placeholder" aria-hidden="true">
+      <div class="placeholder-line placeholder-line--long"></div>
+      <div class="placeholder-line"></div>
+      <div class="placeholder-line"></div>
     </div>
 
-    <div class="view" v-if="!loading">
-      <div>
-        <pre><code>{{ content }}</code></pre>
+    <template v-else>
+      <div class="view" role="region" :aria-label="`${title} example`">
+        <div class="panel panel--source">
+          <span class="panel-label" aria-hidden="true">Markdown</span>
+          <pre><code class="hljs language-markdown" v-html="highlightedSource"></code></pre>
+        </div>
+
+        <div class="panel panel--preview">
+          <span class="panel-label" aria-hidden="true">Preview</span>
+          <div class="marked" v-html="renderedMarkdown"></div>
+        </div>
       </div>
 
-      <div class="marked" v-html="marked"></div>
-    </div>
-
-    <div class="error" v-if="isError">
-      <span>Oops, something went wrong. 🙃</span>
-    </div>
+      <div v-if="isError" class="error" role="alert">
+        <span>Oops, something went wrong loading this section. 🙃</span>
+      </div>
+    </template>
   </article>
 </template>
 
 <style scoped>
-article {
-  margin: 12rem 0;
+.section {
+  margin: 6rem 0;
+  scroll-margin-top: 2rem;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  padding: 0.75rem;
+  border: 1px solid var(--color-step-2);
+  border-radius: 6px;
+  background-color: var(--color-step-3);
+  flex-shrink: 0;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.icon :deep(svg) {
+  width: 100%;
+  height: 100%;
+}
+
+.panel {
+  position: relative;
+  padding: 2rem;
+  background-color: var(--color-board);
+  border-radius: 1rem;
+}
+
+.panel-label {
+  position: absolute;
+  top: -0.75rem;
+  left: 1rem;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--color-step-2);
+  border-radius: 0.25rem;
+  color: var(--color-text);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.placeholder {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 4rem;
+}
+
+.placeholder-line {
+  height: 1rem;
+  margin-bottom: 0.75rem;
+  background-color: var(--color-board);
+  border-radius: 0.25rem;
+  opacity: 0.5;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.placeholder-line--long {
+  width: 75%;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
 .error {
+  margin-top: 1rem;
+  padding: 1rem;
   color: var(--color-red);
-  padding-left: 1rem;
+  background-color: var(--color-board);
+  border-radius: 0.5rem;
 }
 </style>
